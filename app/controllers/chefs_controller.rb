@@ -8,11 +8,20 @@ class ChefsController < ApplicationController
     end
 
     def new
-
+        @chef = Chef.new
+        3.times do 
+            c = @chef.sushis.build 
+            c.build_customer
+        end
     end
 
     def create
-
+        @chef = Chef.new(chef_params)
+        if @chef.save 
+            redirect_to chef_path(@chef)
+        else
+            render :new 
+        end
     end
 
     def edit 
@@ -25,5 +34,11 @@ class ChefsController < ApplicationController
 
     def destroy
 
+    end
+
+    private 
+
+    def chef_params 
+        params.require(:chef).permit(:name, sushis_attributes: [:name, :customer_id, customer_attributes:[:name]])
     end
 end

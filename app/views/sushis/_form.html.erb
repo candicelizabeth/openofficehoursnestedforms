@@ -1,0 +1,18 @@
+<%= form_for @sushi do |f| %>
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+    <h3>Pick your chef: </h3>
+    <%= f.collection_select :chef_id, Chef.all, :id, :name %>
+    <h3>Create a new Chef</h3>
+    <%= f.fields_for :chef do |c| %>
+        <%= c.label :name %>
+        <%= c.text_field :name %>
+    <% end %>
+     <%= f.fields_for :customer do |c| %>
+        <%= c.label :name %>
+        <%= c.text_field :name %>
+    <% end %>
+    <h3>Pick your customer:</h3>
+    <%= f.collection_radio_buttons :customer_id, Customer.all, :id, :name %>
+    <%= f.submit %>
+<% end %>

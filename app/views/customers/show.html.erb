@@ -1,0 +1,4 @@
+<%= @customer.name %>
+<% @customer.sushis.each do |sushi| %>
+    <p><%= sushi.name %> - <%= sushi.chef.name %></p>
+<% end %>

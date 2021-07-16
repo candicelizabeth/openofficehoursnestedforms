@@ -1,4 +1,4 @@
 <%= @chef.name %>
-<% @chef.customers.each do |customer| %>
+<% @chef.customers.uniq.each do |customer| %>
 <%=link_to customer.name, customer %>
 <% end %>

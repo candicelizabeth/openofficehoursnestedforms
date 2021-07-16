@@ -1,0 +1,19 @@
+<%= form_for @chef do |f| %>
+<%= f.label :name %>
+<%= f.text_field :name %>
+<h3>Add New Sushi: </h3>
+<%= f.fields_for :sushis do |s| %>
+<h3>Select a Customer:</h3>
+    <%= s.collection_select :customer_id, Customer.all, :id, :name %>
+    <h3>Create a New Customer:</h3>
+        <%= s.fields_for :customer do |ing_fields| %>
+        <%= ing_fields.label :name, "Customer Name" %>
+        <%= ing_fields.text_field :name %>
+    <% end %>
+    <%= s.label :name, "Sushi Name" %>
+    <%= s.text_field :name %>
+      <br>
+<% end %>
+<%= f.submit%>
+
+<% end %>
